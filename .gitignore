@@ -1,0 +1,4 @@
+# Python visual environment
+.venv
+__pycache__
+*.pyc
