@@ -4,15 +4,20 @@ import numpy as np
 def sign(z):
     return 1 if z >= 0 else -1
 
-def gradient_descent(x, y, theta, learning_rate=0.01, epoch=1000):
-    x_flat = x.flatten()
+def gradient_descent(grad_fn, theta, learning_rate=0.01, epoch=1000):
+    """
+    General-purpose gradient descent.
+
+    Args:
+        grad_fn: callable(theta) -> (loss, grads)
+            Returns the scalar loss and gradient array for the current theta.
+        theta:   initial parameter array (modified in-place).
+    """
     loss_history = []
     theta_history = []
     for _ in range(epoch):
-        predictions = theta[0] + theta[1] * x_flat
-        error = predictions - y
-        loss_history.append(np.mean(error ** 2))
+        loss, grads = grad_fn(theta)
+        loss_history.append(loss)
         theta_history.append(theta.copy())
-        theta[0] -= learning_rate * np.mean(error)
-        theta[1] -= learning_rate * np.mean(error * x_flat)
+        theta -= learning_rate * grads
     return theta, loss_history, theta_history

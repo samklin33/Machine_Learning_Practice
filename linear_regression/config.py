@@ -2,7 +2,7 @@
 TEST_SIZE = 0.1
 
 # Training Parameters
-EPOCH = 10
-LEARNING_RATE = 0.1
+EPOCH = 1000
+LEARNING_RATE = 0.01
 
 # Visualization

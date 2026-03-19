@@ -1,5 +1,6 @@
 import sys
 import os
+import time
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import datasets
@@ -21,10 +22,20 @@ if __name__ == '__main__':
     x_train, x_test, y_train, y_test = split_data(X, data.target, test_size=TEST_SIZE)
 
     # gradient descent
+    x_flat = x_train.flatten()
+    def linear_grad_fn(theta):
+        predictions = theta[0] + theta[1] * x_flat
+        error = predictions - y_train
+        loss = np.mean(error ** 2)
+        grads = np.array([np.mean(error), np.mean(error * x_flat)])
+        return loss, grads
+
+    start = time.time()
     theta = np.zeros(2)
-    theta, loss_history, theta_history = gradient_descent(x_train, y_train, theta, learning_rate=LEARNING_RATE, epoch=EPOCH)
+    theta, loss_history, theta_history = gradient_descent(linear_grad_fn, theta, learning_rate=LEARNING_RATE, epoch=EPOCH)
     print(f"Gradient Descent Coefficients: Intercept = {theta[0]:.4f}, Slope = {theta[1]:.4f}")
     print(f"Gradient Descent Final Loss: {loss_history[-1]:.4f}")
+    print(f"Gradient Descent Time: {time.time() - start:.4f} seconds")
 
     # closed-form solution
     m = np.cov(x_train.flatten(), y_train, bias=True)[0, 1] / np.var(x_train)
