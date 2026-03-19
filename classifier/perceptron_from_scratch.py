@@ -12,29 +12,8 @@ from config import TARGET_NAME, TARGET_CLASS, LEARNING_RATE, EPOCH, TEST_SIZE
 path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.join(path, '..'))
 from lib.data import split_data
-from lib.optim import sign
+from lib.optim import sign, perceptron
 from lib.plot import plot_decision_boundary, plot_accuracy_curve, plot_parameter_convergence
-
-def perceptron(x_train, y_train, x_test, y_test, learning_rate=0.01, epoch=1000):
-    n_features = x_train.shape[1]
-    w = np.zeros(n_features)
-    b = 0.0
-    acc_history = []
-    theta_history = []
-
-    for _ in range(epoch):
-        indices = np.random.permutation(len(x_train))
-        for i in indices:
-            xi, yi = x_train[i], y_train[i]
-            if sign(np.dot(w, xi) + b) != yi:
-                w += learning_rate * yi * xi
-                b += learning_rate * yi
-            
-        preds = np.array([sign(np.dot(w, xi) + b) for xi in x_test])
-        acc_history.append(np.mean(preds == y_test))
-        theta_history.append((w.copy(), b))
-
-    return w, b, acc_history, theta_history
 
 if __name__ == '__main__':
     # Load the Iris dataset
