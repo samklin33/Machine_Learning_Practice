@@ -1,6 +1,9 @@
 import numpy as np
 
 
+def sign(z):
+    return 1 if z >= 0 else -1
+
 def gradient_descent(x, y, theta, learning_rate=0.01, epoch=1000):
     x_flat = x.flatten()
     loss_history = []
