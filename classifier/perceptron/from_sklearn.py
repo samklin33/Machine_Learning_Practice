@@ -1,5 +1,3 @@
-import os
-import sys
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -7,9 +5,6 @@ import matplotlib.pyplot as plt
 from sklearn import datasets
 from sklearn.linear_model import Perceptron
 from sklearn.model_selection import train_test_split
-
-path = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(path, '..'))
 from lib.plot import plot_decision_boundary, plot_accuracy_curve, plot_parameter_convergence
 from config import TARGET_NAME, TARGET_CLASS, LEARNING_RATE, EPOCH, TEST_SIZE
 

@@ -1,4 +1,3 @@
-import sys
 import os
 import time
 import matplotlib.pyplot as plt
@@ -6,12 +5,11 @@ import numpy as np
 from sklearn import datasets
 from config import LEARNING_RATE, EPOCH, TEST_SIZE
 
-path = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(path, '..'))
 from lib.data import split_data
 from lib.optim import gradient_descent
 from lib.plot import plot_regression_fit, plot_loss_curve, plot_parameter_convergence
 
+path = os.path.dirname(os.path.abspath(__file__))
 print(f"learning_rate: {LEARNING_RATE}, epoch: {EPOCH}, test_size: {TEST_SIZE}")
 
 if __name__ == '__main__':

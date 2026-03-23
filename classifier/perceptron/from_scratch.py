@@ -1,5 +1,4 @@
 import os
-import sys
 import time
 import numpy as np
 import pandas as pd
@@ -9,11 +8,12 @@ import matplotlib.animation as animation
 from sklearn import datasets
 from config import TARGET_NAME, TARGET_CLASS, LEARNING_RATE, EPOCH, TEST_SIZE
 
-path = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(path, '..'))
 from lib.data import split_data
 from lib.optim import sign, perceptron
 from lib.plot import plot_decision_boundary, plot_accuracy_curve, plot_parameter_convergence
+
+path = os.path.dirname(os.path.abspath(__file__))
+print(f"learning_rate: {LEARNING_RATE}, epoch: {EPOCH}, test_size: {TEST_SIZE}")
 
 if __name__ == '__main__':
     # Load the Iris dataset

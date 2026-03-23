@@ -1,9 +1,5 @@
 import numpy as np
 
-
-def sign(z):
-    return 1 if z >= 0 else -1
-
 def gradient_descent(grad_fn, theta, learning_rate=0.01, epoch=1000):
     """
     General-purpose gradient descent.
